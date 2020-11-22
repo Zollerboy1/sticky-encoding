@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.3
 ///
 /// Package.swift
 ///
@@ -21,16 +21,29 @@
 import PackageDescription
 
 let package = Package(
-        name: "StickyEncoding",
-        products: [
-            .library(name: "StickyEncoding", type: .dynamic, targets: ["StickyEncoding"])
-        ],
-        targets: [
-            /// Module targets
-            .target(name: "StickyEncoding", dependencies: [], path: "Sources/StickyEncoding"),
+    name: "StickyEncoding",
+    products: [
+        .library(name: "StickyEncoding", type: .dynamic, targets: ["StickyEncoding"])
+    ],
+    targets: [
+        /// Module targets
+        .target(name: "StickyEncoding", dependencies: [], path: "Sources/StickyEncoding"),
 
-            /// Tests
-            .testTarget(name: "StickyEncodingTests", dependencies: ["StickyEncoding"], path: "Tests/StickyEncodingTests")
-        ],
-        swiftLanguageVersions: [.v4_2]
+        /// Tests
+        .testTarget(
+            name: "StickyEncodingTests",
+            dependencies: ["StickyEncoding"],
+            path: "Tests/StickyEncodingTests",
+            exclude: [
+                "BinaryEncodingSingleValueContainerTests.swift.gyb",
+                "BinaryEncodingKeyedContainerNegativeTests.swift.gyb",
+                "SingleValueContainerTests.swift.gyb",
+                "BinaryEncodingUnkeyedContainerNegativeTests.swift.gyb",
+                "BinaryEncodingUnkeyedContainerTests.swift.gyb",
+                "BinaryEncodingKeyedContainerTests.swift.gyb",
+                "BinaryEncodingSingleValueContainerNegativeTests.swift.gyb",
+                "EncodedTypeTests.swift.gyb"
+            ])
+    ],
+    swiftLanguageVersions: [.v5]
 )

@@ -12,7 +12,7 @@ import StickyEncoding
 ///
 /// Generic func to test encoding and decoding round trip.
 ///
-internal func _testCodableRoundTrip<T : Codable>(input: T, file: StaticString = #file, line: UInt = #line, validation: (T) -> Void) {
+internal func _testCodableRoundTrip<T : Codable>(input: T, file: StaticString = #filePath, line: UInt = #line, validation: (T) -> Void) {
     do {
         let encoder = BinaryEncoder()
         let decoder = BinaryDecoder()
@@ -28,7 +28,7 @@ internal func _testCodableRoundTrip<T : Codable>(input: T, file: StaticString = 
 ///
 /// Generic func to test  that decoding throws a `DecodingError.typeMismatch` when required to.
 ///
-internal func _testDecodeTypeMismatch<I,T>(input: I, expected: (type: T.Type, errorType: Any.Type, codingPath: [CodingKey], description: String), file: StaticString = #file, line: UInt = #line) where I: Codable, T: Codable {
+internal func _testDecodeTypeMismatch<I,T>(input: I, expected: (type: T.Type, errorType: Any.Type, codingPath: [CodingKey], description: String), file: StaticString = #filePath, line: UInt = #line) where I: Codable, T: Codable {
     do {
         let encoder = BinaryEncoder()
         let decoder = BinaryDecoder()
@@ -52,7 +52,7 @@ internal func _testDecodeTypeMismatch<I,T>(input: I, expected: (type: T.Type, er
 ///
 /// Generic func to test  that decoding throws a `DecodingError.valueNotFound` when required to.
 ///
-internal func _testDecodeValueNotFound<I,T,E>(input: I, expected: (type: T.Type, errorType: E.Type, codingPath: [CodingKey], description: String), file: StaticString = #file, line: UInt = #line) where I: Codable, T: Codable {
+internal func _testDecodeValueNotFound<I,T,E>(input: I, expected: (type: T.Type, errorType: E.Type, codingPath: [CodingKey], description: String), file: StaticString = #filePath, line: UInt = #line) where I: Codable, T: Codable {
     do {
         let encoder = BinaryEncoder()
         let decoder = BinaryDecoder()
@@ -76,7 +76,7 @@ internal func _testDecodeValueNotFound<I,T,E>(input: I, expected: (type: T.Type,
 ///
 /// Generic func to test  that decoding throws a `DecodingError.keyNotFound` when required to.
 ///
-internal func _testDecodeKeyNotFound<I,T>(input: I, expected: (type: T.Type, key: CodingKey, codingPath: [CodingKey], description: String), file: StaticString = #file, line: UInt = #line) where I: Codable, T: Codable {
+internal func _testDecodeKeyNotFound<I,T>(input: I, expected: (type: T.Type, key: CodingKey, codingPath: [CodingKey], description: String), file: StaticString = #filePath, line: UInt = #line) where I: Codable, T: Codable {
     do {
         let encoder = BinaryEncoder()
         let decoder = BinaryDecoder()
